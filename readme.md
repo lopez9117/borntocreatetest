@@ -8,7 +8,11 @@ that provider token for make different petitions to other endpoints
 
 endpoint
 
-   http://fast-scrubland-40362.herokuapp.com/api/login?email=luis.guillen@lungosoft.com&password=prueba
+   http://fast-scrubland-40362.herokuapp.com/api/login
+   parameters:
+        email
+        password
+   
    
    http://fast-scrubland-40362.herokuapp.com/api/register
     parameters: 
