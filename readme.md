@@ -5,6 +5,12 @@ use laravel passport for create the user authentication API
 
 that provider token for make different petitions to other endpoints
 
+the app is deplyed to heroku
+
+
+Frontend
+    http://fast-scrubland-40362.herokuapp.com
+
 
 endpoint
 
