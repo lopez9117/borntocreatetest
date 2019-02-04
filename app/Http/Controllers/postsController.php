@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Author;
+use DB;
+use yajra\Datatables\Datatables;
 
 class postsController extends Controller
 {
@@ -28,7 +31,28 @@ class postsController extends Controller
      */
     public function create()
     {
-        //
+        
+        $users = DB::table('postsandauthors')   
+       ->select(['title','id',
+                'firstName', 
+                'lastName',
+                'content',
+                'published_at'
+                ]);
+
+    return Datatables::of($users)
+        ->addColumn('action', function ($user) {
+            $actions = '<a href="#" class="btn btn-xs btn-primary edit" id="'.$user->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a> ';
+            $actions .= '<a href="#" class="btn btn-xs btn-danger delete" id="'.$user->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>';
+            return $actions;
+        })->make(true);
+    }
+
+      public function crud()
+    {
+
+            $authors = Author::all();
+            return view('posts', compact('authors'));
     }
 
     /**

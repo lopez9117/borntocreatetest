@@ -18,5 +18,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+
+Route::group(['middleware' => 'cors'], function(){
+    //aqui van todas las rutas que necesitan CORS
+
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
+
+
+Route::get('ajaxdata/getpostsdata',   'postsController@create')->name('ajaxdata.getpostsdata');
+
+Route::post('ajaxdata/postpostsdata', 'postsController@store')->name('ajaxdata.postpostsdata');
+
+Route::get('ajaxdata/fetchpostsdata', 'postsController@edit')->name('ajaxdata.fetchpostsdata');
+
+Route::get('ajaxdata/removepostsdata', 'postsController@destroy')->name('ajaxdata.removepostsdata');
+
+
+});

@@ -12,3 +12,21 @@
 */
 
 Route::get('/', 'postsController@index');
+
+Route::get('/posts', 'postsController@crud');
+
+Route::get('/authors', 'AuthorsController@index');
+
+
+
+
+Route::get('home', function(){
+
+	return view('admin.dashboard');
+})->middleware('auth');
+
+
+
+
+
+Route::auth();
