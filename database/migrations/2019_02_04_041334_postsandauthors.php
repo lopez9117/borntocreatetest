@@ -24,7 +24,7 @@ class Postsandauthors extends Migration
                 authors.firstName AS firstName,
                 authors.lastName AS lastName,
                 posts.content AS content,
-                posts.published_at AS published_at,
+                posts.published_at AS published_at
               
             FROM
                 posts
