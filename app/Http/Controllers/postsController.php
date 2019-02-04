@@ -7,6 +7,8 @@ use App\Post;
 use App\Author;
 use DB;
 use yajra\Datatables\Datatables;
+use Response;
+use Validator;
 
 class postsController extends Controller
 {
@@ -63,7 +65,60 @@ class postsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
+           $validation = Validator::make($request->all(), [         
+             'title'             => 'required',
+             'author'           => 'required',
+             'content'            => 'required',
+             'published_at'      => 'required',
+           
+        ]);
+
+
+        $error_array = array();
+        $success_output = '';
+        if ($validation->fails())
+        {
+            foreach($validation->messages()->getMessages() as $field_name => $messages)
+            {
+                $error_array[] = $messages;
+            }
+        }
+        else
+        {
+            if($request->get('button_action') == "insert")
+            {
+                DB::table('posts')->insert([
+                "title"           => $request->get('title'),
+                "author_id"     => $request->get('author'),
+                "content"      => $request->get('content'),
+                "published_at"         => $request->get('published_at')
+                     
+                  ]);             
+                $success_output        = '<div class="alert alert-success">Data Inserted</div>';
+            }
+            if($request->get('button_action') == 'update')
+            {
+                DB::table('posts')
+                ->where('id',$request->get('student_id'))
+                ->update([
+                "title"           => $request->get('title'),
+                "author_id"     => $request->get('author'),
+                "content"      => $request->get('content'),
+                "published_at"         => $request->get('published_at')  
+                     ]);  
+
+                $success_output         = '<div class="alert alert-success">Data Updated</div>';
+            }
+        }
+        $output = array(
+            'error'     =>  $error_array,
+            'success'   =>  $success_output
+        );
+        echo json_encode($output);
+
+
     }
 
     /**
@@ -83,9 +138,12 @@ class postsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+
+         $id = $request->input('id');
+        $query = Post::where('id',$id)->get();
+        return response($query);
     }
 
     /**
@@ -106,8 +164,14 @@ class postsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        
+             if($request->input('id'))
+        {
+             DB::table('posts')->where('id', '=', $request->input('id') )->delete();
+            echo 'Data Deleted';
+        }
+
     }
 }

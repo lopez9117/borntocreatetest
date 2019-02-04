@@ -39,12 +39,12 @@
                     </thead>
                 </table>
             </div>
-        </div>
+     
     </div>
 
 
 
-    <div id="studentModal" class="modal fade" role="dialog">
+  <div id="studentModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -93,12 +93,16 @@
 
                    </div>
 
-    </div>
+                 </div>
 
+                 <div class="form-group">
+                        <label>post published_at</labels>
+                        <input type="date" name="published_at" required="" id="published_at" class="form-control" />
+                    </div>
 
-                  
+                
                     
-                </div>
+        </div>
                 <div class="modal-footer">
 
                      <input type="hidden" name="student_id" id="student_id" value="" />
@@ -113,7 +117,7 @@
 
 
 
-    </div>
+    
 </div>
 
 
@@ -123,11 +127,14 @@
 <script src="/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
     
     
 
     <script type="text/javascript">
 
+
+ $(document).ready(function(){
 
          $('#posts_table').DataTable({
         "scrollY" : 450,
@@ -157,7 +164,7 @@
         $('#form_output').html('');
         $('#button_action').val('insert');
         $('#action').val('Add');
-         $('#objective').select2();
+        
           });
 
 
@@ -191,7 +198,7 @@
                     $('#action').val('Add');
                     $('.modal-title').text('Add Data');
                     $('#button_action').val('insert');
-                    $('#channel_table').DataTable().ajax.reload();
+                    $('#posts_table').DataTable().ajax.reload();
                     $('#studentModal').modal('hide');
                 }
             }
@@ -216,8 +223,8 @@
              // console.log(data[0].ClientName);
                 $('#student_id').val(id);
                 $('#title').val(data[0].title);
-                $('#author').val(data[0].author);
-                $('#author').select2();
+                $('#author').val(data[0].firstName);
+              
                 $('#content').val(data[0].content);
                 $('#published_at').val(data[0].published_at);
                 $('#studentModal').modal('show');
@@ -251,7 +258,7 @@
     }); 
 
 
-
+   });
 
 
     </script>
