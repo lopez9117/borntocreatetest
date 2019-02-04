@@ -10,6 +10,15 @@ that provider token for make different petitions to other endpoints
 
 Frontend
     http://fast-scrubland-40362.herokuapp.com
+    
+    
+    frontend admin panel
+    
+    http://fast-scrubland-40362.herokuapp.com/login
+    
+    user: luis.lopez@borntocreate.com
+    pass : 1234
+    
 
 
 endpoint
