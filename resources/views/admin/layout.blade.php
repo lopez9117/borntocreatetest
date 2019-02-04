@@ -263,7 +263,7 @@ desired effect
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/posts"><i class="fa fa-link"></i> <span>Crud Posts</span></a></li>
-        <li><a href="/authors"><i class="fa fa-link"></i> <span>Crud Authors</span></a></li>
+        {{-- <li><a href="/authors"><i class="fa fa-link"></i> <span>Crud Authors</span></a></li> --}}
     
       </ul>
       <!-- /.sidebar-menu -->
