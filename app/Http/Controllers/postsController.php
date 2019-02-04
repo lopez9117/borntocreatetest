@@ -36,8 +36,7 @@ class postsController extends Controller
         
         $users = DB::table('postsandauthors')   
        ->select(['title','id',
-                'firstName', 
-                'lastName',
+                'firstName',                 
                 'content',
                 'published_at'
                 ]);
